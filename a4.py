@@ -289,6 +289,7 @@ def draw_spiral_helper(t, side, ang, n, sp):
     # NOTE: Since n lines must be drawn, use a for loop on a range of integers.
     t.color='red'
     t.forward(side)
+    t.speed = sp
     for x in range(n):
         if x%3 == 0:
             t.color = 'red'
@@ -330,11 +331,18 @@ def multi_polygons(w, side, k, n, sp):
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_window(w), report_error('w is not a valid window',w)
     assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_iteration(k), report_error('k is not a valid number')
+    assert is_number(n) and n >= 3, report_error('n is not a valid int')
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
     # HINT: w.clear() clears window.
     # HINT: set the turtle's visible attribute to False at the end.
-    pass
+    #w=tkturtle.Window()
+    w.clear()
+    t = tkturtle.Turtle(w)
+    t.right(90)
+    multi_polygons_helper(t,side,k,n,sp)
+    t.visible = False
 
 
 def multi_polygons_helper(t, side, k, n, sp):
@@ -367,12 +375,26 @@ def multi_polygons_helper(t, side, k, n, sp):
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
     assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_iteration(k), report_error('k is not a valid number')
+    assert is_number(n) and n >= 3, report_error('n is not a valid int')
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
     # HINT:  make sure that upon termination, t's color and speed are restored
     # HINT: since k polygons should be drawn, use a for-loop on a range.
-    pass
-
+    oldcolor = t.color
+    oldspeed = t.speed
+    t.speed = sp
+    for x in range(k):
+        if x%2 == 0:
+            t.color = 'red'
+        else:
+            t.color = 'green'
+        draw_polygon(t, side, n, sp)
+        t.right(90 + ((x*360.0)/100))
+    t.color = oldcolor
+    t.speed = oldspeed
+            
+        
 
 # DO NOT MODIFY
 def draw_polygon(t, side, n, sp):
