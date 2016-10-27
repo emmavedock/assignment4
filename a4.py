@@ -1,6 +1,6 @@
 # a4.py
 # Emma Vedock-Gross (ev225) Trey Aguirre (tea42)
-# 10/
+# 10/25/16
 """Module to draw cool shapes with the Tk Turtle.
 
 The module can be run as a script to show off the various functions.
@@ -375,8 +375,8 @@ def multi_polygons_helper(t, side, k, n, sp):
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
     assert is_valid_length(side), report_error('side is not a valid length',side)
-    assert is_valid_iteration(k), report_error('k is not a valid number')
-    assert is_number(n) and n >= 3, report_error('n is not a valid int')
+    assert is_valid_iteration(k), report_error('k is not a valid number',k)
+    assert is_number(n) and n >= 3, report_error('n is not a valid int',n)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
     # HINT:  make sure that upon termination, t's color and speed are restored
@@ -534,11 +534,19 @@ def cantor(w, side, hght, d):
     Precondition: d is a valid depth (int >= 0)"""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_window(w), report_error('w is not a valid window',w)
+    assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_length(hght), report_error('hght is not a valid lenght',hght)
+    assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # HINT: Remember to make the Pen visible while drawing
-    pass
-
-
+    w.clear()
+    p = tkturtle.Pen(w)
+    p.fillcolor = 'red'
+    p.pencolor = 'black'
+    cantor_helper(p, 0, 0, side, hght, d)
+    p.visible = False
+    
+    
 def cantor_helper(p, x, y, side, hght, d):
     """Draws a stool of dimensions side x hght, and depth d centered at (x,y)
     
@@ -564,12 +572,23 @@ def cantor_helper(p, x, y, side, hght, d):
     Parameter d: The recursive depth of the stool
     Precondition: d is a valid depth (int >= 0)"""
     # ARE THESE ALL OF THE PRECONDITIONS?
-    assert is_valid_penmode(p), report_error('Invalid pen mode', p)
+    assert is_valid_penmode(p), report_error('Invalid pen mode',p)
+    assert is_number(x), report_error('x is not a valid x-coordinate',x)
+    assert is_number(y), report_error('y is not a valid y-coordinate',y)
+    assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_length(hght), report_error('hght is not a valid lenghth',hght)
+    assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # HINT: Use fill_rect instead of setting p's position directly
-    pass
-
-
+    if d == 0:
+        fill_rect(p, x, y, side, hght)
+    
+    else:
+        fill_rect(p, x, y + (hght*0.25), side, hght*0.5) #top
+        cantor_helper(p, x - (side*(1.0/3.0)), y - (hght*0.25), side*(1.0/3.0), hght*0.5, d - 1) # left leg
+        cantor_helper(p, x + (side*(1.0/3.0)), y - (hght*0.25), side*(1.0/3.0), hght*0.5, d - 1) # right leg
+    
+    
 def fill_rect(p, x, y, side, hght):
     """Fill a rectangle of lengths side, hght with center (x, y) using pen p.
     
@@ -705,9 +724,17 @@ def branches(w, hght, d):
     Precondition: n is a valid depth (int >= 0)"""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_window(w), report_error('w is not a valid window',w)
+    assert is_valid_length(hght), report_error('hght is not a valid lenghth',hght)
+    assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # HINT: Remember to make the Turtle visible while drawing
-    pass
+    w.clear()
+    t = tkturtle.Turtle(w)
+    t.move(0, -hght/2)
+    t.right(90)
+    t.color = 'blue'
+    branches_helper(t, hght, d)
+    t.visible = True
 
 
 def branches_helper(t, hght, d):
@@ -731,9 +758,47 @@ def branches_helper(t, hght, d):
     Precondition: n is a valid depth (int >= 0)"""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
+    assert is_valid_length(hght), report_error('hght is not a valid lenghth',hght)
+    assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # There is no need for any helpers.  Just draw with the Turtle
-    pass
+    t.drawmode = True
+    if d == 0:
+       t.forward(hght)
+       t.backward(hght)
+    
+    elif d ==1:
+        t.forward(hght/2.0)
+        t.left(90)
+        t.forward(hght/2.0)
+        t.backward(hght/2.0)
+        t.right(90)
+        t.forward(hght/2.0)
+        t.backward(hght/2.0)
+        t.right(90)
+        t.forward(hght/2.0)
+        t.backward(hght/2.0)
+        t.left(90)
+        t.backward(hght/2.0)
+
+    else:
+        t.forward(hght/2.0)
+        t.left(90)
+        t.forward(hght/2.0)
+        t.backward(hght/2.0)
+        t.right(90)
+        t.forward(hght/2.0)
+        t.backward(hght/2.0)
+        t.right(90)
+        t.forward(hght/2.0)
+        t.backward(hght/2.0)
+        t.left(90)
+        t.backward(hght/2.0)
+        t.forward(hght/2.0)
+        t.left(90)
+        branches_helper(t, hght/2.0, d-1)
+        t.right(90)
+        branches_helper(t, hght/2.0, d-1)
 
 
 ################ Test Function #################
