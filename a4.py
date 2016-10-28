@@ -1,8 +1,7 @@
 # a4.py
 # Emma Vedock-Gross (ev225) Trey Aguirre (tea42)
-# 10/25/16
+# 10/27/16
 """Module to draw cool shapes with the Tk Turtle.
-
 The module can be run as a script to show off the various functions.
 Unimplemented functions will do nothing."""
 import tkturtle
@@ -237,9 +236,11 @@ def draw_spiral(w, side, ang, n, sp):
     Precondition: sp is a valid turtle speed."""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_window(w), report_error('w is not a valid window',w)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
     assert is_number(ang), report_error('ang is not a valid number',ang)
-    assert is_valid_iteration(n), report_error('n is not a valid number of iterations',n)
+    assert is_valid_iteration(n),report_error(
+        'n is not a valid number of iterations',n)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
     # HINT: w.clear() clears window.
@@ -281,9 +282,11 @@ def draw_spiral_helper(t, side, ang, n, sp):
     Precondition: sp is a valid turtle speed."""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
     assert is_number(ang), report_error('ang is not a valid number',ang)
-    assert is_valid_iteration(n), report_error('n is not a valid number of iterations',n)
+    assert is_valid_iteration(n), report_error(
+        'n is not a valid number of iterations',n)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
 
     # NOTE: Since n lines must be drawn, use a for loop on a range of integers.
@@ -308,7 +311,6 @@ def draw_spiral_helper(t, side, ang, n, sp):
 
 def multi_polygons(w, side, k, n, sp):
     """Draws polygons using multi_polygons_helper(t, side, k, n, sp)
-
     This function clears the window and makes a new turtle t.  This turtle
     starts in the middle of the canvas facing north (NOT the default west).
     It then calls multi_polygons_helper(t, side, k, n, sp). When it is done,
@@ -330,7 +332,8 @@ def multi_polygons(w, side, k, n, sp):
     Precondition: sp is a valid turtle speed."""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_window(w), report_error('w is not a valid window',w)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
     assert is_valid_iteration(k), report_error('k is not a valid number')
     assert is_number(n) and n >= 3, report_error('n is not a valid int')
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
@@ -374,7 +377,8 @@ def multi_polygons_helper(t, side, k, n, sp):
     Precondition: sp is a valid turtle speed."""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
     assert is_valid_iteration(k), report_error('k is not a valid number',k)
     assert is_number(n) and n >= 3, report_error('n is not a valid int',n)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
@@ -405,7 +409,6 @@ def draw_polygon(t, side, n, sp):
     WHEN DONE, THE FOLLOWING TURTLE ATTRIBUTES ARE THE SAME AS IT STARTED:
     position (x and y, within round-off errors), heading, color, speed,
     visible, and drawmode.  There is no need to restore these.
-
     Parameter t: The drawing Turtle
     Precondition: t is a Turtle with drawmode True.
     
@@ -419,8 +422,10 @@ def draw_polygon(t, side, n, sp):
     Precondition: sp is a valid turtle speed."""
     # Assert the preconditions
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
-    assert (type(n) == int and n >= 3), report_error('n is an invalid # of poly sides',n)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
+    assert (type(n) == int and n >= 3), report_error(
+        'n is an invalid # of poly sides',n)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
     # Remember old speed
@@ -473,7 +478,8 @@ def radiate_helper(t, side, n, sp):
     """Draws n straight radiating lines of length s at equal angles.
     
     This lines are drawn using turtle t with the turtle moving at speed sp.
-    A line drawn at angle ang, 0 <= ang < 360 has HSV color (ang % 360.0, 1, 1).
+    A line drawn at angle ang, 0 <= ang < 360 has HSV color
+    (ang % 360.0, 1, 1).
     
     WHEN DONE, THE FOLLOWING TURTLE ATTRIBUTES ARE THE SAME AS IT STARTED:
     color, speed, visible, and drawmode. However, the final position and
@@ -493,7 +499,8 @@ def radiate_helper(t, side, n, sp):
     Precondition: sp is a valid turtle speed."""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
     # Notes:
@@ -534,8 +541,10 @@ def cantor(w, side, hght, d):
     Precondition: d is a valid depth (int >= 0)"""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_window(w), report_error('w is not a valid window',w)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
-    assert is_valid_length(hght), report_error('hght is not a valid lenght',hght)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
+    assert is_valid_length(hght), report_error(
+        'hght is not a valid lenght',hght)
     assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # HINT: Remember to make the Pen visible while drawing
@@ -575,8 +584,10 @@ def cantor_helper(p, x, y, side, hght, d):
     assert is_valid_penmode(p), report_error('Invalid pen mode',p)
     assert is_number(x), report_error('x is not a valid x-coordinate',x)
     assert is_number(y), report_error('y is not a valid y-coordinate',y)
-    assert is_valid_length(side), report_error('side is not a valid length',side)
-    assert is_valid_length(hght), report_error('hght is not a valid lenghth',hght)
+    assert is_valid_length(side), report_error(
+        'side is not a valid length',side)
+    assert is_valid_length(hght), report_error(
+        'hght is not a valid lenghth',hght)
     assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # HINT: Use fill_rect instead of setting p's position directly
@@ -585,8 +596,10 @@ def cantor_helper(p, x, y, side, hght, d):
     
     else:
         fill_rect(p, x, y + (hght*0.25), side, hght*0.5) #top
-        cantor_helper(p, x - (side*(1.0/3.0)), y - (hght*0.25), side*(1.0/3.0), hght*0.5, d - 1) # left leg
-        cantor_helper(p, x + (side*(1.0/3.0)), y - (hght*0.25), side*(1.0/3.0), hght*0.5, d - 1) # right leg
+        cantor_helper(p, x - (side*(1.0/3.0)), y - (hght*0.25),
+                      side*(1.0/3.0), hght*0.5, d - 1) # left leg
+        cantor_helper(p, x + (side*(1.0/3.0)), y - (hght*0.25),
+                      side*(1.0/3.0), hght*0.5, d - 1) # right leg
     
     
 def fill_rect(p, x, y, side, hght):
@@ -648,7 +661,8 @@ def sierpinski(w, side, d):
 
 
 def sierpinski_helper(p, x, y, side, d):
-    """Draws a Sierpinski triangle with side length and depth d anchored at (x, y).
+    """Draws a Sierpinski triangle with side length and depth
+    d anchored at (x, y).
     
     The (x,y) defines the lower left corner of the Sierpinksi triangle (NOT
     the middle as you might want to do). 
@@ -683,7 +697,7 @@ def fill_triangle(p, side):
     """Fill the equilateral triangle of side length side using pen p.
     
     The left point of the triangle base is at the current position of p. 
-    In addition, the triangle is pointing up. When done, the position of Pen p 
+    In addition, the triangle is pointing up. When done, the position of Pen p
     should be as it was initially.
     
     Parameter p: The graphics pen
@@ -710,7 +724,7 @@ def branches(w, hght, d):
     positioned at (0,-hght/2).  This function calls branches_helper(t,hght,d),
     which does all the drawing. When it is done, the turtle is left hidden
     (visible is False).
-    
+
     The turtle color is 'blue'.  The Turtle is visible when drawing and
     hidden at the end.
     
@@ -724,7 +738,8 @@ def branches(w, hght, d):
     Precondition: n is a valid depth (int >= 0)"""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_window(w), report_error('w is not a valid window',w)
-    assert is_valid_length(hght), report_error('hght is not a valid lenghth',hght)
+    assert is_valid_length(hght), report_error(
+        'hght is not a valid lenghth',hght)
     assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # HINT: Remember to make the Turtle visible while drawing
@@ -758,7 +773,8 @@ def branches_helper(t, hght, d):
     Precondition: n is a valid depth (int >= 0)"""
     # ARE THESE ALL OF THE PRECONDITIONS?
     assert is_valid_turtlemode(t), report_error('Invalid turtle mode', t)
-    assert is_valid_length(hght), report_error('hght is not a valid lenghth',hght)
+    assert is_valid_length(hght), report_error(
+        'hght is not a valid lenghth',hght)
     assert is_valid_depth(d), report_error('d is not a valid depth',d)
     
     # There is no need for any helpers.  Just draw with the Turtle
@@ -767,38 +783,29 @@ def branches_helper(t, hght, d):
        t.forward(hght)
        t.backward(hght)
     
-    elif d ==1:
-        t.forward(hght/2.0)
-        t.left(90)
-        t.forward(hght/2.0)
-        t.backward(hght/2.0)
-        t.right(90)
-        t.forward(hght/2.0)
-        t.backward(hght/2.0)
-        t.right(90)
-        t.forward(hght/2.0)
-        t.backward(hght/2.0)
-        t.left(90)
-        t.backward(hght/2.0)
-
     else:
         t.forward(hght/2.0)
         t.left(90)
+        if d > 1:
+            branches_helper(t, hght/2.0,d-1)        
         t.forward(hght/2.0)
         t.backward(hght/2.0)
         t.right(90)
+        if d > 1:
+            branches_helper(t, hght/2.0,d-1)        
         t.forward(hght/2.0)
         t.backward(hght/2.0)
         t.right(90)
+        if d > 1:
+            branches_helper(t, hght/2.0,d-1)        
         t.forward(hght/2.0)
         t.backward(hght/2.0)
         t.left(90)
+        if d > 1:
+            branches_helper(t, hght/2.0,d-1)        
         t.backward(hght/2.0)
-        t.forward(hght/2.0)
-        t.left(90)
-        branches_helper(t, hght/2.0, d-1)
-        t.right(90)
-        branches_helper(t, hght/2.0, d-1)
+        
+
 
 
 ################ Test Function #################
